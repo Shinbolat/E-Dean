@@ -140,10 +140,12 @@ public class LoginFragment extends Fragment {
 
     }
 
+    /*
     OnSuccesListener onSuccesListener;
 
     public interface OnSuccesListener {
         public void OnSuccesListener(int pos);
     }
+    */
 
 }
