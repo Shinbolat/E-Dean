@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.util.TimeUtils;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.frank.dean.AsyncTask.NetAsyncTask;
+import com.frank.dean.dekan.DekanActivityJournal;
+import com.frank.dean.student.StudentActivity;
+import com.frank.dean.teacher.TeachersActivityJournal;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -88,12 +90,9 @@ public class LoginFragment extends Fragment {
                 if(!log.isEmpty() && (!passw.isEmpty())){
                     try {
                         result = new JSONObject(new NetAsyncTask(getContext())
-                                                    .execute("http://localhost/testing/login.php", "select login, passw from "
-                                                            + role[position].toLowerCase()
-                                                            + " where login=\'" + log + "\' and passw=\'" + passw + "\'").get());
-
-
-                        //"select login, passw from teacher where login='Pak' and passw='pak'"
+                                                    .execute("http://10.0.2.2/testing/login.php",
+                                                            "select name, login, passw from " + role[position].toLowerCase()
+                                                            + " where login = \'" + log + "\' and passw = \'" + passw + "\'").get());
 
                         JSONArray authArray = result.getJSONArray("result");
                         JSONObject auth = authArray.optJSONObject(0);
@@ -104,13 +103,48 @@ public class LoginFragment extends Fragment {
                                     && (log.toLowerCase().equals(auth.getString("login").toLowerCase()))
                                     && (passw.toLowerCase().equals(auth.getString("password").toLowerCase()))) {
 
-                                Log.i("JSON", auth.getString("login") + " " + auth.getString("password"));
+                                Log.i("JSON", auth.getString("name") + " " + auth.getString("login") + " " + auth.getString("password"));
 
+                                //message.setText(auth.getString("name"));
+                                //TimeUnit.SECONDS.sleep(1);
                                 message.setText(getContext().getResources().getString(R.string.success));
 
-                                Intent intent = new Intent(getContext(), TeachersJournal.class);
-                                intent.putExtra("position",position);
-                                startActivity(intent);
+
+                                Intent intent;
+
+                                switch(position){
+
+                                    case 0:
+
+                                        Toast.makeText(getContext(),"Dekan",Toast.LENGTH_LONG).show();
+
+                                        intent = new Intent(getContext(), DekanActivityJournal.class);
+                                        intent.putExtra("name", auth.getString("name"));
+                                        startActivity(intent);
+
+                                        break;
+                                    case 1:
+
+                                        Toast.makeText(getContext(),"Page not ready",Toast.LENGTH_LONG).show();
+
+                                        break;
+                                    case 2:
+
+                                        Toast.makeText(getContext(),"Teacher",Toast.LENGTH_LONG).show();
+
+                                        intent = new Intent(getContext(), TeachersActivityJournal.class);
+                                        intent.putExtra("name", auth.getString("name"));
+                                        startActivity(intent);
+                                        break;
+
+                                    case 3:
+
+                                        intent = new Intent(getContext(), StudentActivity.class);
+                                        intent.putExtra("name",auth.getString("name"));
+                                        startActivity(intent);
+
+                                }
+
 
                             }
                             else message.setText(getContext().getResources().getString(R.string.error));

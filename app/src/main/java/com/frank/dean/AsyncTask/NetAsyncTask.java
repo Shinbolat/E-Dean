@@ -67,6 +67,10 @@ public class NetAsyncTask extends AsyncTask<String, Void,String> {
             String data = URLEncoder.encode("query_text", "UTF-8")
                     + "=" + URLEncoder.encode(params[1].toString(), "UTF-8");
             writer.write(data);
+
+            /*String str = "{\"query_text\":"+ params[1].toString() + "}";
+            writer.write(URLEncoder.encode((str), "UTF-8"));
+            */
             writer.flush();
 
             InputStream inputStream = connection.getInputStream();

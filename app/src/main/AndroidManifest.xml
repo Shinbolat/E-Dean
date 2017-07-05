@@ -23,8 +23,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TeachersJournal"
+        <activity android:name=".teacher.TeachersActivityJournal"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".dekan.DekanActivityJournal"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".student.StudentActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
     </application>
 
 </manifest>

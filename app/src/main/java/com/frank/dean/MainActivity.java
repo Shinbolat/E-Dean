@@ -1,10 +1,14 @@
 package com.frank.dean;
 
 import android.app.FragmentTransaction;
+import android.hardware.display.DisplayManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -27,20 +31,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, new MainActivityFragment()).commit();
-
-/*
-        netAsyncTask = new NetAsyncTask(getApplicationContext());
-
-        try {
-
-            input = netAsyncTask.execute("http://localhost/testing/query.php", "select * from role").get();
-            Toast.makeText(this,input,Toast.LENGTH_LONG).show();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-*/
 
     }
 

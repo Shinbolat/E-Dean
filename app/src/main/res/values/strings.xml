@@ -10,6 +10,18 @@
     <string name="error">wrong data</string>
     <string name="success">Success</string>
     <string name="journal">Journal</string>
+    <string name="roll">Roll</string>
+    <string name="name">Name</string>
+    <string name="modul_first">Modul 1</string>
+    <string name="modul_second">Modul 2</string>
+    <string name="finish_mark">Finish Mark</string>
+    <string name="manage_journal">Manage Journal</string>
+    <string name="accept_journal">Accept Journal</string>
+    <string name="course1">1 course</string>
+    <string name="course2">2 course</string>
+    <string name="course3">3 course</string>
+    <string name="course4">4 course</string>
+    <string name="subjects">Subjects</string>
 
     <string-array name="roles">
         <item>Dekan</item>
